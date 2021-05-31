@@ -12,16 +12,7 @@ class GameStarter:
     def __init__(self, parent):#constructor, The __init__() function is called automatically every time the class is being used to create a new object.
  
         background_color="dark blue"# to set it as background color for all the label widgets
-        #Background image on Frame
-        self.bg_image = Image.open("game10.png") #need to use Image if need to resize 
-        self.bg_image = self.bg_image.resize((750, 650), Image.ANTIALIAS)
-        self.bg_image = ImageTk.PhotoImage(self.bg_image) 
-
-        #widgets goes below  
-
-        #image label below
-        self.image_label = Label(parent, image=self.bg_image)
-        self.image_label.place(x=0, y=0, relwidth=1, relheight=1) # make label l to fit the frame
+        #Background image 
 
         #entry box
         self.entry_box = Entry(parent)
@@ -39,7 +30,6 @@ class GameStarter:
     def name_collection(self):
         name=self.entry_box.get()
         names_list.append(name) #add name to names list declared at the beginning
-        self.image_label.destroy()
         self.entry_box.destroy()
         self.continue_button.destroy()
         self.cancel_button.destroy()
@@ -54,22 +44,18 @@ class StoryWindow:
 
     background_color = "blue"
   
-    #frame to place widgets on
-    self.story_frame = Frame (parent, bg = background_color)
-    self.story_frame.grid()
-
-#Background image on Frame
-    self.bg_image = Image.open("storm.png") #need to use Image if need to resize 
-    self.bg_image = self.bg_image.resize((650, 550), Image.ANTIALIAS)
-    self.bg_image = ImageTk.PhotoImage(self.bg_image) 
+    #Background image on Frame
+    self.bg_img = Image.open("storm.png") #update my image file
+    image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
+    image_label.configure(image = image) #upadate the label
+    image_label.image = image # keep a reference!        
 
 
-    self.bg_image = Label(self.story_frame, image=self.bg_image)
-    self.bg_image.place(x=0, y=0, relwidth=1, relheight=1)
 
 
-    self.story1_label = Label( self.story_frame, text="Testing how long the story can be I wan to write a lot to see if a label can handle too much writing,\n \n\n so if my story is big, like few lines big, it will show or not on the frame?????\n\n\n")
-    self.story1_label.grid(row=1, padx=50, pady=50)
+
+    self.story1_label = Label( parent, bg="purple3" , text="Testing how long the story can be I wan to write a lot to see if a label can handle too much writing,\n \n\n so if my story is big, like few lines big, it will show or not on the frame?????\n\n\n")
+    self.story1_label.place(x=50, y=50)
 
 
 
@@ -91,6 +77,12 @@ if __name__ == "__main__":
    root = Tk()
    root.title("Game Name")
    root.geometry("750x650")
+   bg_image = Image.open("game10.png") #need to use Image if need to resize 
+   bg_image = bg_image.resize((750, 650), Image.ANTIALIAS)
+   bg_image = ImageTk.PhotoImage(bg_image) 
+   #image label below
+   image_label = Label(root, image=bg_image)
+   image_label.place(x=0, y=0, relwidth=1, relheight=1) # make label l to fit the fram
    game_starter_window = GameStarter(root) #instantiation, making an instance (object) of the class
    root.mainloop()#so the window doesnt dissapear
 
