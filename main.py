@@ -1,3 +1,4 @@
+
 from tkinter import *
 from PIL import ImageTk, Image
 
@@ -56,10 +57,31 @@ class StoryWindow:
     #frame to place widgets on
     self.story_frame = Frame (parent, bg = background_color)
     self.story_frame.grid()
+
+#Background image on Frame
+    self.bg_image = Image.open("storm.png") #need to use Image if need to resize 
+    self.bg_image = self.bg_image.resize((650, 550), Image.ANTIALIAS)
+    self.bg_image = ImageTk.PhotoImage(self.bg_image) 
+
+
+    self.bg_image = Label(self.story_frame, image=self.bg_image)
+    self.bg_image.place(x=0, y=0, relwidth=1, relheight=1)
+
+
     self.story1_label = Label( self.story_frame, text="Testing how long the story can be I wan to write a lot to see if a label can handle too much writing,\n \n\n so if my story is big, like few lines big, it will show or not on the frame?????\n\n\n")
     self.story1_label.grid(row=1, padx=50, pady=50)
 
 
+
+#option 1 Button
+    self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3")
+    self.option1_button.place(x=30, y=400, width=300, height=200)
+
+#option 2 Button
+    self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3")
+    self.option2_button.place(x=415, y=400, width=300, height=200)
+
+     
 
 
 
