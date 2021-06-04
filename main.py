@@ -63,7 +63,7 @@ class StoryWindow:
     image_label.image = image # keep a reference!        
 
 
-    self.story_label = Label(parent, bg="purple3" , text= scenario_options[s1])
+    self.story_label = Label(parent, bg="purple3" , text= scenario_options["s1"])
     self.story_label.place(x=50, y=50)
 
 
