@@ -45,7 +45,7 @@ class StoryWindow:
     background_color = "blue"
   
     #Background image on Frame
-    self.bg_img = Image.open("storm.png") #update my image file
+    self.bg_img = Image.open("storm1y.png") #update my image file
     image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
     image_label.configure(image = image) #upadate the label
     image_label.image = image # keep a reference!        
@@ -59,13 +59,37 @@ class StoryWindow:
 
 
 
+
 #option 1 Button
-    self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3")
+    self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3",
+    command=self.leaderboard_collection)
     self.option1_button.place(x=30, y=400, width=300, height=200)
+    
 
 #option 2 Button
-    self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3")
+    self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3",
+      command=self.leaderboard_collection)
     self.option2_button.place(x=415, y=400, width=300, height=200)
+
+
+  def leaderboard_collection (self):
+   self.option1_button.destroy()
+   self.option2_button.destroy()
+   self.story1_label.destroy()
+   LeaderboardWindow(root)
+
+
+
+class LeaderboardWindow:
+  def __init__(self, parent):
+
+    #Background image on Frame
+    parent.geometry("550x650")
+    self.bg_img = Image.open("Lb4.png") #update my image file
+    self.bg_img = self.bg_img.resize((550, 650), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
+    image_label.configure(image = image) #upadate the label
+    image_label.image = image # keep a reference!     
 
      
 
