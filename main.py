@@ -5,7 +5,22 @@ from PIL import ImageTk, Image
 
 #variables
 names_list = []
-
+#component 4: Dictionary collection of scenarios and options
+scenario_options = {
+        "s1" : "scenario 1",
+        "s1_opt1" : "scenario 1 option 1",
+        "s1_opt2" : "scenario 1 option 2",
+        "s2" : "scenario 2",
+        "s2_opt1" : "scenario 2 option 1",
+        "s2_opt2" : "scenario 2 option 2",
+        "s3" : "scenario 3",
+        "s3_opt1" : "scenario 3 option 1",
+        "s3_opt2": "scenario 3 option 2",
+        "s4_end" : "scenario 4 end",
+        "s5_end" : "scenario 5 end",
+        "s6_end" : "scenario 6 end",
+      }
+    
 
 #Componenet 1 (Game Starter Window object) will be constructed through following class
 class GameStarter:
@@ -37,53 +52,52 @@ class GameStarter:
 
 #Componenet 2 (Story wimdow object) will be constructed through following class
 class StoryWindow:
-
   def __init__(self, parent):
       
-    #component 4: Dictionary collection of scenarios and options
-    scenario_options = {
-      "s1" : "scenario 1",
-      "s1_op1" : "scenario 1 option 1",
-      "s1_opt2" : "scenario 1 option 2",
-      "s2" : "scenario 2",
-      "s2_op1" : "scenario 2 option 1",
-      "s2_opt2" : "scenario 2 option 2",
-      "s3" : "scenario 3",
-      "s3_op1" : "scenario 3 option 1",
-      "s3_opt2": "scenario 3 option 2",
-      "s4_end" : "scenario 4 end",
-      "s5_end" : "scenario 5 end",
-      "s6_end" : "scenario 6 end",
-    }
-  
-    #Background image on Frame
-    self.bg_img = Image.open("storm1y.png") #update my image file
-    image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
-    image_label.configure(image = image) #upadate the label
-    image_label.image = image # keep a reference!        
+      #Background image on Frame
+      self.bg_img = Image.open("storm1y.png") #update my image file
+      image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
+      image_label.configure(image = image) #upadate the label
+      image_label.image = image # keep a reference!        
 
+      self.story_label = Label(parent, bg="purple3" , text= scenario_options["s1"])
+      self.story_label.place(x=50, y=50)
+      #option 1 Button
+      self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3",
+      command=self.option1)
+      self.option1_button.place(x=30, y=400, width=300, height=200)
+      #option 2 Button
+      self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3",
+        command=self.leaderboard_collection)
+      self.option2_button.place(x=415, y=400, width=300, height=200)
 
-    self.story_label = Label(parent, bg="purple3" , text= scenario_options["s1"])
-    self.story_label.place(x=50, y=50)
+  def option1 (self):
+      #index to keep track where the player is in the story
+      index = 1
 
+      if index ==1 :
+        self.story_label.config(text=scenario_options["s3"])
+        self.option1_button.config(text=scenario_options["s3_opt1"])
+        self.option2_button.config(text=scenario_options["s3_opt2"])
+        index=3
+      elif index ==2 :
+        self.story_label.config(text=scenario_options["s3"])
+        self.option1_button.config(text=scenario_options["s3_opt1"])
+        self.option2_button.config(text=scenario_options["s3_opt2"])
+        index=3
+      elif index ==3 :
+        self.story_label.config(text=scenario_options["s6_end"])
+        self.option1_button.destroy()
+        self.option2_button.destroy()
+        self.leader_board_button = Button(parent, text="Leader Board")
+        
 
-    #option 1 Button
-    self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3",
-    command=self.leaderboard_collection)
-    self.option1_button.place(x=30, y=400, width=300, height=200)
-    
-
-    #option 2 Button
-    self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3",
-      command=self.leaderboard_collection)
-    self.option2_button.place(x=415, y=400, width=300, height=200)
-
-
+            
   def leaderboard_collection (self):
-   self.option1_button.destroy()
-   self.option2_button.destroy()
-   self.story_label.destroy()
-   LeaderboardWindow(root)
+      self.option1_button.destroy()
+      self.option2_button.destroy()
+      self.story_label.destroy()
+      LeaderboardWindow(root)
 
 
 #component 3: leader board 
