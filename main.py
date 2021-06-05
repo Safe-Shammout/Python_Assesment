@@ -20,7 +20,6 @@ scenario_options = {
         "s5_end" : "scenario 5 end",
         "s6_end" : "scenario 6 end",
       }
-    
 
 #Componenet 1 (Game Starter Window object) will be constructed through following class
 class GameStarter:
@@ -52,8 +51,9 @@ class GameStarter:
 
 #Componenet 2 (Story wimdow object) will be constructed through following class
 class StoryWindow:
+
   def __init__(self, parent):
-      
+  
       #Background image on Frame
       self.bg_img = Image.open("storm1y.png") #update my image file
       image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
@@ -68,37 +68,54 @@ class StoryWindow:
       self.option1_button.place(x=30, y=400, width=300, height=200)
       #option 2 Button
       self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3",
-        command=self.leaderboard_collection)
+        command=self.option2)
       self.option2_button.place(x=415, y=400, width=300, height=200)
-
-  def option1 (self):
       #index to keep track where the player is in the story
-      index = 1
+      self.index=1
 
-      if index ==1 :
+  def option1 (self): 
+      #using or operator is more efficient than repeating conditions
+      if (self.index == 1 or self.index == 2):
         self.story_label.config(text=scenario_options["s3"])
         self.option1_button.config(text=scenario_options["s3_opt1"])
         self.option2_button.config(text=scenario_options["s3_opt2"])
-        index=3
-      elif index ==2 :
-        self.story_label.config(text=scenario_options["s3"])
-        self.option1_button.config(text=scenario_options["s3_opt1"])
-        self.option2_button.config(text=scenario_options["s3_opt2"])
-        index=3
-      elif index ==3 :
+        self.index=3
+      else:
         self.story_label.config(text=scenario_options["s6_end"])
         self.option1_button.destroy()
         self.option2_button.destroy()
-        self.leader_board_button = Button(parent, text="Leader Board")
-        
+        #self.leader_board_button = Button(parent, text="Leader Board")
+     # elif index ==2 :
+       # self.story_label.config(text=scenario_options["s3"])
+        #self.option1_button.config(text=scenario_options["s3_opt1"])
+       # self.option2_button.config(text=scenario_options["s3_opt2"])
+        #index=3
 
+  #option 2 button method
+  def option2 (self):
+        if self.index ==1 :
+          self.story_label.config(text=scenario_options["s2"])
+          self.option1_button.config(text=scenario_options["s2_opt1"])
+          self.option2_button.config(text=scenario_options["s2_opt2"])
+          self.index=2
+        elif self.index ==2 :
+          self.story_label.config(text=scenario_options["s4_end"])
+          self.option1_button.destroy()
+          self.option2_button.destroy()
+          #self.leader_board_button = Button(parent, text="Leader Board")
+        else :
+          self.story_label.config(text=scenario_options["s5_end"])
+          self.option1_button.destroy()
+          self.option2_button.destroy()
+         # self.leader_board_button = Button(parent, text="Leader Board")
+        
             
   def leaderboard_collection (self):
       self.option1_button.destroy()
       self.option2_button.destroy()
       self.story_label.destroy()
       LeaderboardWindow(root)
-
+#TO HERE
 
 #component 3: leader board 
 class LeaderboardWindow:
