@@ -1,7 +1,7 @@
 
 from tkinter import *
 from PIL import ImageTk, Image
-
+from tkinter import messagebox  #for error messages (diagnose and recover)
 
 #variables
 names_list = []
@@ -43,11 +43,18 @@ class GameStarter:
     #method in class to collect the name entered by user, destry widgets and create a StoryWindow object
     def name_collection(self):
         name=self.entry_box.get()
-        names_list.append(name) #add name to names list declared at the beginning
-        self.entry_box.destroy()
-        self.continue_button.destroy()
-        self.cancel_button.destroy()
-        StoryWindow(root)
+        if name == "":
+          messagebox.showerror("Name is required!","Please enter your name")
+        elif len(name) >15: #toi make sure user inputs between 1-15 characters
+            messagebox.showerror("limit error","please enter a name between 1 and 15 characters")
+ 
+
+        else:
+         names_list.append(name) #add name to names list declared at the beginning
+         self.entry_box.destroy()
+         self.continue_button.destroy()
+         self.cancel_button.destroy()
+         StoryWindow(root)
 
 #Componenet 2 (Story wimdow object) will be constructed through following class
 class StoryWindow:
