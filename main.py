@@ -7,9 +7,11 @@ from tkinter import messagebox  #for error messages (diagnose and recover)
 names_list = []
 #component 4: Dictionary collection of scenarios and options
 scenario_options = {
-        "s1" : "scenario 1",
-        "s1_opt1" : "scenario 1 option 1",
-        "s1_opt2" : "scenario 1 option 2",
+        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch u and ur friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will tip over.The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world.Everyone is panicking and the captain is nowhere to be seen. No one knows how to steer the ship.",
+
+        "s1_opt1" : """Use one of the lifeboats\n and abandon the ship.""",
+        "s1_opt2" : "Stay on the ship.",
+
         "s2" : "scenario 2",
         "s2_opt1" : "scenario 2 option 1",
         "s2_opt2" : "scenario 2 option 2",
@@ -67,16 +69,16 @@ class StoryWindow:
       image_label.configure(image = image) #upadate the label
       image_label.image = image # keep a reference!        
 
-      self.story_label = Label(parent, bg="purple3" , text= scenario_options["s1"])
-      self.story_label.place(x=50, y=50)
+      self.story_label = Message(parent, bg="slateblue" , text= scenario_options["s1"], bd=6, fg="white", font=("Helvetica", "13", "bold"))
+      self.story_label.place(x=100, y=20, width=550, height=450)
       #option 1 Button
-      self.option1_button = Button(parent, text="option 1", font=("Helvetica", "13", "bold"), bg="purple3",
+      self.option1_button = Button(parent, text= scenario_options["s1_opt1"], font=("Helvetica", "13", "bold"), bg="slateblue",  wraplength= 0,
       command=self.option1)
-      self.option1_button.place(x=30, y=400, width=300, height=200)
+      self.option1_button.place(x=30, y=500, width=300, height=100)
       #option 2 Button
-      self.option2_button = Button(parent, text="option 2", font=("Helvetica", "13", "bold"), bg="purple3",
+      self.option2_button = Button(parent, text=scenario_options["s1_opt2"], font=("Helvetica", "13", "bold"), bg="slateblue",
         command=self.option2)
-      self.option2_button.place(x=415, y=400, width=300, height=200)
+      self.option2_button.place(x=415, y=500, width=300, height=100)
       #index to keep track where the player is in the story
       self.index=1
 
