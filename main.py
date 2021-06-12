@@ -80,6 +80,10 @@ class StoryWindow:
       self.option2_button = Button(parent, text=scenario_options["s1_opt2"], font=("Helvetica", "13", "bold"), bg="slateblue",
         command=self.option2)
       self.option2_button.place(x=415, y=500, width=320, height=100)
+
+      #exit button to take to LeaderboardWindow
+      self.leader_board_button =Button(parent, text="Exit", font=("Helvetica", "13", "bold"), bg="red",  command=self.leaderboard_collection)
+      self.leader_board_button.place(x=355, y=620)
       #index to keep track where the player is in the story
       self.index=1
 
@@ -94,7 +98,7 @@ class StoryWindow:
         self.story_label.config(text=scenario_options["s6_end"])
         self.option1_button.destroy()
         self.option2_button.destroy()
-        #self.leader_board_button = Button(parent, text="Leader Board")
+        #self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
      # elif index ==2 :
        # self.story_label.config(text=scenario_options["s3"])
         #self.option1_button.config(text=scenario_options["s3_opt1"])
@@ -112,18 +116,19 @@ class StoryWindow:
           self.story_label.config(text=scenario_options["s4_end"])
           self.option1_button.destroy()
           self.option2_button.destroy()
-          #self.leader_board_button = Button(parent, text="Leader Board")
+         # self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
         else :
           self.story_label.config(text=scenario_options["s5_end"])
           self.option1_button.destroy()
           self.option2_button.destroy()
-         # self.leader_board_button = Button(parent, text="Leader Board")
+          #self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
         
             
   def leaderboard_collection (self):
       self.option1_button.destroy()
       self.option2_button.destroy()
       self.story_label.destroy()
+      self.leader_board_button.destroy()
       LeaderboardWindow(root)
 #TO HERE
 
@@ -137,7 +142,13 @@ class LeaderboardWindow:
     self.bg_img = self.bg_img.resize((550, 650), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(self.bg_img) #update PhotoImage
     image_label.configure(image = image) #upadate the label
-    image_label.image = image # keep a reference!     
+    image_label.image = image # keep a reference!  
+
+    self.name_lbl = Label(parent, text = "name" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name_lbl.place(x=50, y=100)
+      #option 2 Button
+    self.score_lbl= Label(parent, text= "score", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score_lbl.place(x=300, y=100) 
 
      
 
