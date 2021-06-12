@@ -1,24 +1,23 @@
 
-from tkinter import *
-from PIL import ImageTk, Image
+from tkinter import *  #for GUI and widgets
+from PIL import ImageTk, Image #for Images
 from tkinter import messagebox  #for error messages (diagnose and recover)
 
 #variables
-names_list = []
+names_list = [] #list to store names for leader board
 #component 4: Dictionary collection of scenarios and options
 scenario_options = {
-        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch u and ur friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will tip over.The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world.Everyone is panicking and the captain is nowhere to be seen. No one knows how to steer the ship.",
+        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will tip over.The compass stopped working and it seems that there is no way of communicating with the outside world. There is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen. No one knows how to steer the ship.",
+        "s1_opt1" : "Stay on the ship.",
+        "s1_opt2" :  """Use one of the lifeboats\n and abandon the ship.""",
+        "s2" : "Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and veryone is just hoping that things can get better. All of a sudden an island has been spotted. Bursting with excitement and joy..." ,
+        "s2_opt1" : "Go to the island.",
+        "s2_opt2" : "The island looks too sketchy \n you think that there isnt a safe \n place to set shore, So wait.",
 
-        "s1_opt1" : """Use one of the lifeboats\n and abandon the ship.""",
-        "s1_opt2" : "Stay on the ship.",
-
-        "s2" : "scenario 2",
-        "s2_opt1" : "scenario 2 option 1",
-        "s2_opt2" : "scenario 2 option 2",
         "s3" : "scenario 3",
         "s3_opt1" : "scenario 3 option 1",
         "s3_opt2": "scenario 3 option 2",
-        "s4_end" : "scenario 4 end",
+        "s4_end" : "The waves get more violent than ever, fortunately you land on a island, but this island isnt the one youve seen before. Its a whole different island. Much smaller than the one you have seen before. U set camp until u realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as u remember but you arent really sure, as days passed and you lost track\n you lose, GAME OVER",
         "s5_end" : "scenario 5 end",
         "s6_end" : "scenario 6 end",
       }
@@ -39,7 +38,7 @@ class GameStarter:
         self.continue_button.place(x=550, y=550)
 
          #cancel button
-        self.cancel_button = Button(parent, text="Cancel", font=("Helvetica", "13", "bold"), bg="red")
+        self.cancel_button = Button(parent, text="Cancel", font=("Helvetica", "13", "bold"), bg="red", command=self.cancel)
         self.cancel_button.place(x=50, y=550) 
 
     #method in class to collect the name entered by user, destry widgets and create a StoryWindow object
@@ -49,14 +48,16 @@ class GameStarter:
           messagebox.showerror("Name is required!","Please enter your name")
         elif len(name) >15: #toi make sure user inputs between 1-15 characters
             messagebox.showerror("limit error","please enter a name between 1 and 15 characters")
- 
-
         else:
          names_list.append(name) #add name to names list declared at the beginning
          self.entry_box.destroy()
          self.continue_button.destroy()
          self.cancel_button.destroy()
          StoryWindow(root)
+
+    #cancel method
+    def cancel(self):
+      root.destroy()
 
 #Componenet 2 (Story wimdow object) will be constructed through following class
 class StoryWindow:
@@ -70,15 +71,15 @@ class StoryWindow:
       image_label.image = image # keep a reference!        
 
       self.story_label = Message(parent, bg="slateblue" , text= scenario_options["s1"], bd=6, fg="white", font=("Helvetica", "13", "bold"))
-      self.story_label.place(x=100, y=20, width=550, height=450)
+      self.story_label.place(x=100, y=20, width=550, height=400)
       #option 1 Button
       self.option1_button = Button(parent, text= scenario_options["s1_opt1"], font=("Helvetica", "13", "bold"), bg="slateblue",  wraplength= 0,
       command=self.option1)
-      self.option1_button.place(x=30, y=500, width=300, height=100)
+      self.option1_button.place(x=30, y=500, width=320, height=100)
       #option 2 Button
       self.option2_button = Button(parent, text=scenario_options["s1_opt2"], font=("Helvetica", "13", "bold"), bg="slateblue",
         command=self.option2)
-      self.option2_button.place(x=415, y=500, width=300, height=100)
+      self.option2_button.place(x=415, y=500, width=320, height=100)
       #index to keep track where the player is in the story
       self.index=1
 
