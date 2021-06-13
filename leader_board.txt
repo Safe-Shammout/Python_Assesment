@@ -2,5 +2,10 @@
 0 - loser
 50 - Safe2
 90 - friend
-0 - lila
-0 - whatever
+30 - lila
+20 - whatever
+0 - J
+0 - testing
+0 - test
+0 - testing
+0 - testing
