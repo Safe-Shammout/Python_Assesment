@@ -144,7 +144,7 @@ class StoryWindow:
         file.write(name+"\n")
         file.close()
       #To dispolay name and score in seperate labels
-      leaders = LeaderboardWindow(root)#create an instance of LeaderboardWindow
+      leaders = LeaderboardWindow(root)#create an instance of LeaderboardWindow so we can edit its labels
       input_file = open("leader_board.txt", 'r') #open in read mode
       line_list = input_file.readlines() #read the lines in text file
       line_list.sort() #sort them score is first so according to score
@@ -160,10 +160,21 @@ class StoryWindow:
       top.reverse()
       print(top)#for testing (list is sorted after testing so good)
       for i in range (len(top)):
-        leaders.name_lbl.config(text=top[0][1])
+        leaders.name_lbl.config(text=top[0][1]) #leaders is the object
         leaders.score_lbl.config(text=top[0][0])
         leaders.name2_lbl.config(text=top[1][1])
         leaders.score2_lbl.config(text=top[1][0])
+        leaders.name3_lbl.config(text=top[2][1])
+        leaders.score3_lbl.config(text=top[2][0])
+        leaders.name4_lbl.config(text=top[3][1])
+        leaders.score4_lbl.config(text=top[3][0])
+        leaders.name5_lbl.config(text=top[4][1])
+        leaders.score5_lbl.config(text=top[4][0])
+        
+       
+
+
+
 
 #component 3: leader board 
 class LeaderboardWindow:
@@ -190,6 +201,35 @@ class LeaderboardWindow:
     self.score2_lbl.place(x=300, y=200) 
 
      
+    self.name3_lbl = Label(parent, text = "name3" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name3_lbl.place(x=50, y=300)
+      #option 2 Button
+    self.score3_lbl= Label(parent, text= "score3", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score3_lbl.place(x=300, y=300) 
+
+
+    self.name4_lbl = Label(parent, text = "name4" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name4_lbl.place(x=50, y=400)
+      #option 2 Button
+    self.score4_lbl= Label(parent, text= "score4", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score4_lbl.place(x=300, y=400)
+
+    self.name5_lbl = Label(parent, text = "name5" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name5_lbl.place(x=50, y=400)
+      #option 2 Button
+    self.score5_lbl= Label(parent, text= "score5", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score5_lbl.place(x=300, y=400)  
+
+    self.name6_lbl = Label(parent, text = "name6" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name6_lbl.place(x=50, y=500)
+      #option 2 Button
+    self.score6_lbl= Label(parent, text= "score6", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score6_lbl.place(x=300, y=500)  
+
+
+
+
+
 
 
 
