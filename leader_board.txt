@@ -1,0 +1,6 @@
+100 - Safe
+0 - loser
+50 - Safe2
+90 - friend
+0 - lila
+0 - whatever

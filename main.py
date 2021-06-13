@@ -14,13 +14,14 @@ scenario_options = {
         "s2_opt1" : "Go to the island.",
         "s2_opt2" : "The island looks too sketchy \n you think that there isnt a safe \n place to set shore, So wait.",
 
-        "s3" : "scenario 3",
-        "s3_opt1" : "scenario 3 option 1",
-        "s3_opt2": "scenario 3 option 2",
+        "s3" : "With the waves tossing u around randomly u hit the jackpot and land on an island. You have no idea how you got here but your thankful. After setting ashore u are greeted by a creature that you have never seen before..It is so hairy that you cant tell the front of its head from the back, and it speaks human language, english. You are really shocked, amazed and mostly petrified by what your seeing, doubting your own consciousness, have u lost it? The creature tells you that it can help you out",
+        "s3_opt1" : "Trust the creature",
+        "s3_opt2": "This creature is freaky as hell\n and this is so suspicious,\n go back to the ship and \nsail away immediately",
         "s4_end" : "The waves get more violent than ever, fortunately you land on a island, but this island isnt the one youve seen before. Its a whole different island. Much smaller than the one you have seen before. U set camp until u realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as u remember but you arent really sure, as days passed and you lost track\n you lose, GAME OVER",
-        "s5_end" : "scenario 5 end",
-        "s6_end" : "scenario 6 end",
+        "s5_end" : "After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that ahs been sent out has finally found you",
+        "s6_end" : "The creature explains to you the situation, gives you food supplies and also gives you a whole new ship. It turned out to be a really friendly creature. It helped you set sail and you arrive safely to your original destination",
       }
+#global points 
 
 #Componenet 1 (Game Starter Window object) will be constructed through following class
 class GameStarter:
@@ -85,7 +86,10 @@ class StoryWindow:
       self.leader_board_button =Button(parent, text="Exit", font=("Helvetica", "13", "bold"), bg="red",  command=self.leaderboard_collection)
       self.leader_board_button.place(x=355, y=620)
       #index to keep track where the player is in the story
-      self.index=1
+      self.index = 1
+      #points was coming with error in leaderboard method that its referenced without assignment
+      #adding it here in the constructor solved the issue
+      self.points = 0
 
   def option1 (self): 
       #using or operator is more efficient than repeating conditions
@@ -129,7 +133,38 @@ class StoryWindow:
       self.option2_button.destroy()
       self.story_label.destroy()
       self.leader_board_button.destroy()
-      LeaderboardWindow(root)
+      #save information to a file 
+      name = names_list[0]
+      file = open("leader_board.txt", "a") #open file or create if its first time in append mode
+      if name == "safe_erase": 
+        file = open ("leader_board.txt", "w") #this clears the data in file 
+      else:
+        file.write(str(self.points)) #turn into string as will be displayed as text in a label
+        file.write(" - ")
+        file.write(name+"\n")
+        file.close()
+
+      input_file = open("leader_board.txt", 'r') #open in read mode
+      line_list = input_file.readlines()
+      line_list.sort()
+      top = []
+      top5 = (line_list[-5:])
+      for line in top5:
+        points = line.split(" - ")
+        top.append((int(points[0]), points[1]))
+      file.close()
+      top.sort()
+      top.reverse()
+      return_string = ""
+      for i in range (len(top)):
+          return_string+= "{} - {} \n".format(top[i][0], top[i][1])
+      print(return_string)#testing to see on cosole wont display on window
+      leaders = LeaderboardWindow(root)
+      for i in range (len(top)):
+       leaders.name_lbl.config(text=top[i][1])
+       leaders.score_lbl.config(text=top[i][0])
+       leaders.name2_lbl.config(text=top[i][1])
+       leaders.score2_lbl.config(text=top[i][0])
 #TO HERE
 
 #component 3: leader board 
@@ -150,6 +185,12 @@ class LeaderboardWindow:
     self.score_lbl= Label(parent, text= "score", font=("Helvetica", "13", "bold"), height=3, width=15)
     self.score_lbl.place(x=300, y=100) 
 
+    self.name2_lbl = Label(parent, text = "name" , font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.name_lbl.place(x=50, y=200)
+      #option 2 Button
+    self.score2_lbl= Label(parent, text= "score", font=("Helvetica", "13", "bold"), height=3, width=15)
+    self.score_lbl.place(x=300, y=200) 
+
      
 
 
@@ -158,7 +199,7 @@ class LeaderboardWindow:
 #Program runs below
 if __name__ == "__main__":
    root = Tk()
-   root.title("Game Name")
+   root.title("Lost in Time")
    root.geometry("750x650")
    bg_image = Image.open("game10.png") #need to use Image if need to resize 
    bg_image = bg_image.resize((750, 650), Image.ANTIALIAS)
