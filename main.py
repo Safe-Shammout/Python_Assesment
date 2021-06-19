@@ -7,18 +7,21 @@ from tkinter import messagebox  #for error messages (diagnose and recover)
 names_list = [] #list to store names for leader board
 #component 4: Dictionary collection of scenarios and options
 scenario_options = {
-        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will tip over.The compass stopped working and it seems that there is no way of communicating with the outside world. There is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen. No one knows how to steer the ship.",
+        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch u and ur friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world.Everyone is panicking and the captain is nowhere to be seen.Everyone is panicking and the captain is nowhere to be seen...",
         "s1_opt1" : "Stay on the ship.",
         "s1_opt2" :  """Use one of the lifeboats\n and abandon the ship.""",
-        "s2" : "Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and veryone is just hoping that things can get better. All of a sudden an island has been spotted. Bursting with excitement and joy..." ,
+        "s2" : "Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and everyone is just hoping that things can get better. All of a sudden an island has been spotted.",
+
         "s2_opt1" : "Go to the island.",
         "s2_opt2" : "The island looks too sketchy \n you think that there isnt a safe \n place to set shore, So wait.",
 
-        "s3" : "With the waves tossing u around randomly u hit the jackpot and land on an island. You have no idea how you got here but your thankful. After setting ashore u are greeted by a creature that you have never seen before..It is so hairy that you cant tell the front of its head from the back, and it speaks human language, english. You are really shocked, amazed and mostly petrified by what your seeing, doubting your own consciousness, have u lost it? The creature tells you that it can help you out",
+        "s3" : "With the waves tossing u around randomly u hit the jackpot and land on an island. You have no idea how you got here but you're thankful. After setting ashore you are greeted by a creature that you have never seen before..It is.so hairy that you can't tell the front of its head from the back, and it speaks human language, english. You are really shocked, amazed and mostly petrified by what you're seeing, doubting your own consciousness, have you lost it? \n The creature tells you that it can help you out.",
+      
+
         "s3_opt1" : "Trust the creature",
         "s3_opt2": "This creature is freaky as hell\n and this is so suspicious,\n go back to the ship and \nsail away immediately",
         "s4_end" : "The waves get more violent than ever, fortunately you land on a island, but this island isnt the one youve seen before. Its a whole different island. Much smaller than the one you have seen before. U set camp until u realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as u remember but you arent really sure, as days passed and you lost track\n you lose, GAME OVER",
-        "s5_end" : "After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that ahs been sent out has finally found you",
+        "s5_end" : "After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that has been sent out has finally found you",
         "s6_end" : "The creature explains to you the situation, gives you food supplies and also gives you a whole new ship. It turned out to be a really friendly creature. It helped you set sail and you arrive safely to your original destination",
       }
 #global points 
@@ -71,14 +74,14 @@ class StoryWindow:
       image_label.configure(image = image) #upadate the label
       image_label.image = image # keep a reference!        
 
-      self.story_label = Message(parent, bg="slateblue" , text= scenario_options["s1"], bd=6, fg="white", font=("Helvetica", "13", "bold"))
+      self.story_label = Message(parent, bg="MediumPurple4" , text= scenario_options["s1"], bd=6, fg="white", font=("Helvetica", "13", "bold"))
       self.story_label.place(x=100, y=20, width=550, height=400)
       #option 1 Button
-      self.option1_button = Button(parent, text= scenario_options["s1_opt1"], font=("Helvetica", "13", "bold"), bg="slateblue",  wraplength= 0,
+      self.option1_button = Button(parent, text= scenario_options["s1_opt1"], font=("Helvetica", "13", "bold"), bg="white", activebackground="RoyalBlue3",  wraplength= 0,
       command=self.option1)
       self.option1_button.place(x=30, y=500, width=320, height=100)
       #option 2 Button
-      self.option2_button = Button(parent, text=scenario_options["s1_opt2"], font=("Helvetica", "13", "bold"), bg="slateblue",
+      self.option2_button = Button(parent, text=scenario_options["s1_opt2"], font=("Helvetica", "13", "bold"), bg="white", activebackground="RoyalBlue3",
         command=self.option2)
       self.option2_button.place(x=415, y=500, width=320, height=100)
 
