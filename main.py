@@ -7,7 +7,7 @@ from tkinter import messagebox  #for error messages (diagnose and recover)
 names_list = [] #list to store names for leader board
 #component 4: Dictionary collection of scenarios and options
 scenario_options = {
-        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch u and ur friends now share is the flashes of lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world.Everyone is panicking and the captain is nowhere to be seen.Everyone is panicking and the captain is nowhere to be seen...",
+        "s1" : "You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of the lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen.....",
         "s1_opt1" : "Stay on the ship.",
         "s1_opt2" :  """Use one of the lifeboats\n and abandon the ship.""",
         "s2" : "Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and everyone is just hoping that things can get better. All of a sudden an island has been spotted.",
@@ -15,12 +15,12 @@ scenario_options = {
         "s2_opt1" : "Go to the island.",
         "s2_opt2" : "The island looks too sketchy \n you think that there isnt a safe \n place to set shore, So wait.",
 
-        "s3" : "With the waves tossing u around randomly u hit the jackpot and land on an island. You have no idea how you got here but you're thankful. After setting ashore you are greeted by a creature that you have never seen before..It is.so hairy that you can't tell the front of its head from the back, and it speaks human language, english. You are really shocked, amazed and mostly petrified by what you're seeing, doubting your own consciousness, have you lost it? \n The creature tells you that it can help you out.",
+        "s3" : "With the waves tossing you around randomly you hit the jackpot and land on an island. You have no idea how you got here but you're thankful. After setting ashore you are greeted by a creature that you have never seen before..It is so hairy that you can't tell the front of its head from the back, and it speaks human language, English. You are really shocked, amazed and mostly petrified by what you're seeing, doubting your own consciousness, have you lost it? \n The creature tells you that it can help you out.",
       
 
         "s3_opt1" : "Trust the creature",
         "s3_opt2": "This creature is freaky as hell\n and this is so suspicious,\n go back to the ship and \nsail away immediately",
-        "s4_end" : "The waves get more violent than ever, fortunately you land on a island, but this island isnt the one youve seen before. Its a whole different island. Much smaller than the one you have seen before. U set camp until u realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as u remember but you arent really sure, as days passed and you lost track\n you lose, GAME OVER",
+        "s4_end" : "The waves get more violent than ever, fortunately you land on an island, but this island is not the one you've seen before. Its a whole different island. Much smaller than the one you have seen before. You set up a camp until you realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as you remember but you are not really sure, as days passed and you lost track\n you lose, GAME OVER",
         "s5_end" : "After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that has been sent out has finally found you",
         "s6_end" : "The creature explains to you the situation, gives you food supplies and also gives you a whole new ship. It turned out to be a really friendly creature. It helped you set sail and you arrive safely to your original destination",
       }
@@ -52,6 +52,8 @@ class GameStarter:
           messagebox.showerror("Name is required!","Please enter your name")
         elif len(name) >15: #toi make sure user inputs between 1-15 characters
             messagebox.showerror("limit error","please enter a name between 1 and 15 characters")
+        elif name.isnumeric():
+            messagebox.showerror("Name error", "please enter name with Alphabets not numbers")
         else:
          names_list.append(name) #add name to names list declared at the beginning
          self.entry_box.destroy()
@@ -75,7 +77,7 @@ class StoryWindow:
       image_label.image = image # keep a reference!        
 
       self.story_label = Message(parent, bg="MediumPurple4" , text= scenario_options["s1"], bd=6, fg="white", font=("Helvetica", "13", "bold"))
-      self.story_label.place(x=100, y=20, width=550, height=400)
+      self.story_label.place(x=100, y=20, width=570, height=400)
       #option 1 Button
       self.option1_button = Button(parent, text= scenario_options["s1_opt1"], font=("Helvetica", "13", "bold"), bg="white", activebackground="RoyalBlue3",  wraplength= 0,
       command=self.option1)
@@ -100,9 +102,15 @@ class StoryWindow:
         self.story_label.config(text=scenario_options["s3"])
         self.option1_button.config(text=scenario_options["s3_opt1"])
         self.option2_button.config(text=scenario_options["s3_opt2"])
+        if self.index == 1:
+          self.points += 400
+        else:
+          self.points += 75
         self.index=3
-      else:
+      else: 
+        self.points += 150
         self.story_label.config(text=scenario_options["s6_end"])
+        print(self.points)
         self.option1_button.destroy()
         self.option2_button.destroy()
         #self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
@@ -115,16 +123,19 @@ class StoryWindow:
   #option 2 button method
   def option2 (self):
         if self.index ==1 :
+          self.points += 250
           self.story_label.config(text=scenario_options["s2"])
           self.option1_button.config(text=scenario_options["s2_opt1"])
           self.option2_button.config(text=scenario_options["s2_opt2"])
           self.index=2
         elif self.index ==2 :
+          self.points += -250
           self.story_label.config(text=scenario_options["s4_end"])
           self.option1_button.destroy()
           self.option2_button.destroy()
          # self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
         else :
+          self.points += 100
           self.story_label.config(text=scenario_options["s5_end"])
           self.option1_button.destroy()
           self.option2_button.destroy()
@@ -223,11 +234,7 @@ class LeaderboardWindow:
     self.score5_lbl= Label(parent, text= "score5", font=("Helvetica", "13", "bold"), height=3, width=15)
     self.score5_lbl.place(x=300, y=400)  
 
-    self.name6_lbl = Label(parent, text = "name6" , font=("Helvetica", "13", "bold"), height=3, width=15)
-    self.name6_lbl.place(x=50, y=500)
-      #option 2 Button
-    self.score6_lbl= Label(parent, text= "score6", font=("Helvetica", "13", "bold"), height=3, width=15)
-    self.score6_lbl.place(x=300, y=500)  
+
 
 
 

@@ -4,13 +4,11 @@
 90 - friend
 30 - lila
 20 - whatever
-0 - 1213
 
-0 - Nico
-0 - a1
-0 - dasdas
-0 - sda
-0 - Safe
-0 - jjh
-0 - asa
-0 - Fares
+550 - testing
+400 - test 2
+0 - Test4
+475 - test5
+500 - Test3
+425 - test6
+0 - ab
