@@ -9,28 +9,6 @@ from tkinter import messagebox  # for error messages (diagnose and recover)
 
 names_list = []  # list to store names for leader board
 
-# component 4: Dictionary collection of scenarios and options
-
-scenario_options = {
-    's1': 'You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of the lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen.....',
-    's1_opt1': 'Stay on the ship.',
-    's1_opt2': """Use one of the lifeboats\n and abandon the ship.""",
-    's2': 'Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and everyone is just hoping that things can get better. All of a sudden an island has been spotted.',
-    's2_opt1': 'Go to the island.',
-    's2_opt2': '''The island looks too sketchy 
- you think that there isnt a safe 
- place to set shore, So wait.''',
-    's3': "With the waves tossing you around randomly you hit the jackpot and land on an island. You have no idea how you got here but you're thankful. After setting ashore you are greeted by a creature that you have never seen before..It is so hairy that you can't tell the front of its head from the back, and it speaks human language, English. You are really shocked, amazed and mostly petrified by what you're seeing, doubting your own consciousness, have you lost it? \n The creature tells you that it can help you out.",
-    's3_opt1': 'Trust the creature',
-    's3_opt2': '''This creature is freaky as hell
- and this is so suspicious,
- go back to the ship and 
-sail away immediately''',
-    's4_end': "The waves get more violent than ever, fortunately you land on an island, but this island is not the one you've seen before. Its a whole different island. Much smaller than the one you have seen before. You set up a camp until you realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as you remember but you are not really sure, as days passed and you lost track\n you lose, GAME OVER",
-    's5_end': 'After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that has been sent out has finally found you',
-    's6_end': 'The creature explains to you the situation, gives you food supplies and also gives you a whole new ship. It turned out to be a really friendly creature. It helped you set sail and you arrive safely to your original destination',
-    }
-
 
 # Componenet 1 (Game Starter Window object) will be constructed through following class
 
@@ -75,7 +53,7 @@ class GameStarter:
                                  )
         elif name.isnumeric():
             messagebox.showerror('Name error',
-                                 'please enter name with Alphabets not numbers'
+                                 'Name cant consist of only numbers, please try again'
                                  )
         else:
             names_list.append(name)  # add name to names list declared at the beginning
@@ -93,75 +71,97 @@ class GameStarter:
 # Componenet 2 (Story wimdow object) will be constructed through following class
 
 class StoryWindow:
+  # component 4: Dictionary collection of scenarios and options
+
 
     def __init__(self, parent):
 
-      # Background image on Frame
+          self.scenario_options = {
+              's1': 'You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of the lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen.....',
+              's1_opt1': 'Stay on the ship.',
+              's1_opt2': """Use one of the lifeboats\n and abandon the ship.""",
+              's2': 'Now you and your friends have set off in the life boat, but it seems the situation has gotten worse, you have drifted too far off. You are in the middle of the sea with limited food and drinking water. The fierce sea does not seem to be calming down and everyone is just hoping that things can get better. All of a sudden an island has been spotted.',
+              's2_opt1': 'Go to the island.',
+              's2_opt2': '''The island looks too sketchy 
+          you think that there isnt a safe 
+          place to set shore, So wait.''',
+              's3': "With the waves tossing you around randomly you hit the jackpot and land on an island. You have no idea how you got here but you're thankful. After setting ashore you are greeted by a creature that you have never seen before..It is so hairy that you can't tell the front of its head from the back, and it speaks human language, English. You are really shocked, amazed and mostly petrified by what you're seeing, doubting your own consciousness, have you lost it? \n The creature tells you that it can help you out.",
+              's3_opt1': 'Trust the creature',
+              's3_opt2': '''This creature is freaky as hell
+          and this is so suspicious,
+          go back to the ship and 
+          sail away immediately''',
+              's4_end': "The waves get more violent than ever, fortunately you land on an island, but this island is not the one you've seen before. Its a whole different island. Much smaller than the one you have seen before. You set up a camp until you realise this is your new home, with no contact to the outside world, with no idea as to where you are. You are the only habitants to this island. You have lived here for about 4 years, as long as you remember but you are not really sure, as days passed and you lost track\n you lose, GAME OVER",
+              's5_end': 'After setting sail and running away from that creature you are now lost in the ocean, back to square 1. Luckily out of nowhere the storm suddenly ends. The rescue team that has been sent out has finally found you',
+              's6_end': 'The creature explains to you the situation, gives you food supplies and also gives you a whole new ship. It turned out to be a really friendly creature. It helped you set sail and you arrive safely to your original destination',
+              }
 
-        self.bg_img = Image.open('storm1y.png')  # update my image file
-        image = ImageTk.PhotoImage(self.bg_img)  # update PhotoImage
-        image_label.configure(image=image)  # upadate the label
-        image_label.image = image  # keep a reference!
+        # Background image on Frame
 
-        self.story_label = Message(
-            parent,
-            bg='MediumPurple4',
-            text=scenario_options['s1'],
-            bd=6,
-            fg='white',
-            font=('Helvetica', '13', 'bold'),
-            )
-        self.story_label.place(x=100, y=20, width=570, height=400)
+          self.bg_img = Image.open('storm1y.png')  # update my image file
+          image = ImageTk.PhotoImage(self.bg_img)  # update PhotoImage
+          image_label.configure(image=image)  # upadate the label
+          image_label.image = image  # keep a reference!
 
-      # option 1 Button
+          self.story_label = Message(
+              parent,
+              bg='MediumPurple4',
+              text=self.scenario_options['s1'],
+              bd=6,
+              fg='white',
+              font=('Helvetica', '13', 'bold'),
+              )
+          self.story_label.place(x=100, y=20, width=570, height=400)
 
-        self.option1_button = Button(
-            parent,
-            text=scenario_options['s1_opt1'],
-            font=('Helvetica', '13', 'bold'),
-            bg='white',
-            activebackground='RoyalBlue3',
-            wraplength=0,
-            command=self.option1,
-            )
-        self.option1_button.place(x=30, y=500, width=320, height=100)
+        # option 1 Button
 
-      # option 2 Button
+          self.option1_button = Button(
+              parent,
+              text=self.scenario_options['s1_opt1'],
+              font=('Helvetica', '13', 'bold'),
+              bg='white',
+              activebackground='RoyalBlue3',
+              wraplength=0,
+              command=self.option1,
+              )
+          self.option1_button.place(x=30, y=500, width=320, height=100)
 
-        self.option2_button = Button(
-            parent,
-            text=scenario_options['s1_opt2'],
-            font=('Helvetica', '13', 'bold'),
-            bg='white',
-            activebackground='RoyalBlue3',
-            command=self.option2,
-            )
-        self.option2_button.place(x=415, y=500, width=320, height=100)
+        # option 2 Button
 
-      # exit button to take to LeaderboardWindow
+          self.option2_button = Button(
+              parent,
+              text=self.scenario_options['s1_opt2'],
+              font=('Helvetica', '13', 'bold'),
+              bg='white',
+              activebackground='RoyalBlue3',
+              command=self.option2,
+              )
+          self.option2_button.place(x=415, y=500, width=320, height=100)
 
-        self.leader_board_button = Button(parent, text='Exit',
-                font=('Helvetica', '13', 'bold'), bg='red',
-                command=self.leaderboard_collection)
-        self.leader_board_button.place(x=355, y=620)
+        # exit button to take to LeaderboardWindow
 
-      # index to keep track where the player is in the story
+          self.leader_board_button = Button(parent, text='Exit',
+                  font=('Helvetica', '13', 'bold'), bg='red',
+                  command=self.leaderboard_collection)
+          self.leader_board_button.place(x=355, y=620)
 
-        self.index = 1
+        # index to keep track where the player is in the story
 
-      # points was coming with error in leaderboard method that its referenced without assignment
-      # adding it here in the constructor solved the issue
+          self.index = 1
 
-        self.points = 0
+        # points was coming with error in leaderboard method that its referenced without assignment
+        # adding it here in the constructor solved the issue
+
+          self.points = 0
 
     def option1(self):
 
       # using or operator is more efficient than repeating conditions
 
         if self.index == 1 or self.index == 2:
-            self.story_label.config(text=scenario_options['s3'])
-            self.option1_button.config(text=scenario_options['s3_opt1'])
-            self.option2_button.config(text=scenario_options['s3_opt2'])
+            self.story_label.config(text=self.scenario_options['s3'])
+            self.option1_button.config(text=self.scenario_options['s3_opt1'])
+            self.option2_button.config(text=self.scenario_options['s3_opt2'])
             if self.index == 1:
                 self.points += 400
             else:
@@ -169,7 +169,7 @@ class StoryWindow:
             self.index = 3
         else:
             self.points += 150
-            self.story_label.config(text=scenario_options['s6_end'])
+            self.story_label.config(text=self.scenario_options['s6_end'])
             print (self.points)
             self.option1_button.destroy()
             self.option2_button.destroy()
@@ -186,13 +186,13 @@ class StoryWindow:
     def option2(self):
         if self.index == 1:
             self.points += 250
-            self.story_label.config(text=scenario_options['s2'])
-            self.option1_button.config(text=scenario_options['s2_opt1'])
-            self.option2_button.config(text=scenario_options['s2_opt2'])
+            self.story_label.config(text=self.scenario_options['s2'])
+            self.option1_button.config(text=self.scenario_options['s2_opt1'])
+            self.option2_button.config(text=self.scenario_options['s2_opt2'])
             self.index = 2
         elif self.index == 2:
             self.points += -250
-            self.story_label.config(text=scenario_options['s4_end'])
+            self.story_label.config(text=self.scenario_options['s4_end'])
             self.option1_button.destroy()
             self.option2_button.destroy()
         else:
@@ -200,7 +200,7 @@ class StoryWindow:
          # self.leader_board_button = Button(parent, text="Leader Board", command=self.leaderboard_collection)
 
             self.points += 100
-            self.story_label.config(text=scenario_options['s5_end'])
+            self.story_label.config(text=self.scenario_options['s5_end'])
             self.option1_button.destroy()
             self.option2_button.destroy()
 
@@ -242,7 +242,7 @@ class StoryWindow:
         top.reverse()
         print(top)  # for testing (list is sorted after testing so good)
         for i in range(len(top)):
-            leaders.name_lbl.config(text=top[0][1])  # leaders is the object
+            leaders.name_lbl.config(text=top[0][1])  # leaders is the object from leaderboardWindow class
             leaders.score_lbl.config(text=top[0][0])
             leaders.name2_lbl.config(text=top[1][1])
             leaders.score2_lbl.config(text=top[1][0])

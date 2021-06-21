@@ -1,14 +1,8 @@
-100 - Safe
-0 - loser
-50 - Safe2
-90 - friend
-30 - lila
-20 - whatever
-
-550 - testing
-400 - test 2
-0 - Test4
-475 - test5
-500 - Test3
-425 - test6
-0 - ab
+550 - Ahmad
+500 - Ansh
+425 - test
+425 - jack
+475 - jack1
+0 - gg
+550 - der
+550 - test
