@@ -53,8 +53,11 @@ class GameStarter:
                                  )
         elif name.isnumeric():
             messagebox.showerror('Name error',
-                                 'Name cant consist of only numbers, please try again'
+                                 'Name can only consist of letters'
                                  )
+        elif  not name.isalpha():
+                messagebox.showerror('test',
+                'name cant consist of symbols')
         else:
             names_list.append(name)  # add name to names list declared at the beginning
             self.entry_box.destroy()
@@ -71,11 +74,11 @@ class GameStarter:
 # Componenet 2 (Story wimdow object) will be constructed through following class
 
 class StoryWindow:
-  # component 4: Dictionary collection of scenarios and options
-
-
+  
     def __init__(self, parent):
 
+          # component 4: Dictionary collection of scenarios and options
+          
           self.scenario_options = {
               's1': 'You went on a trip overseas with your friends and you have decided to go by ship. Everything was going well until the welcoming cheerful sun slowly faded away. The sky turned pitch black, the only light source other than the torch you and your friends now share is the flashes of the lightning. The waves start to play around with your ship. It seems the sea has rejected you and any moment the ship will top over. The compass stopped working and it seems that there is no way of communicating with the outside world.there is no reception. The ship has drifted off course and no one, not even the captain knows where you are. You are stuck in the middle of nowhere with no help from the outside world. Everyone is panicking and the captain is nowhere to be seen.....',
               's1_opt1': 'Stay on the ship.',
